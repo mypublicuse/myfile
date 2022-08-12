@@ -1,0 +1,98 @@
+api:
+  replicaCount: 1
+  defaultDomain: api.exless.pf.com
+  domains: [api.exless.pf.com,cllctr.exless.pf.com,app.exless.pf.com]
+  image:
+    repository: nexus.pf.com:8082/exceptionless/api
+    tag: latest
+    pullPolicy: IfNotPresent
+
+collector:
+  replicaCount: 1
+  defaultDomain: cllctr.exless.pf.com
+  domains: [cllctr.exless.pf.com,api.exless.pf.com,app.exless.pf.com]
+
+app:
+  replicaCount: 1
+  defaultDomain: app.exless.pf.com
+  domains: [app.exless.pf.com,api.exless.pf.com,cllctr.exless.pf.com]
+  image:
+    repository: nexus.pf.com:8082/exceptionless/ui
+    tag: latest
+    pullPolicy: IfNotPresent
+
+jobs:
+  image:
+    repository: nexus.pf.com:8082/exceptionless/job
+    tag: latest
+    pullPolicy: IfNotPresent
+  closeInactiveSessions:
+    replicaCount: 1
+  dailySummary:
+    replicaCount: 1
+  eventNotifications:
+    replicaCount: 1
+  eventPosts:
+    replicaCount: 1
+  eventUserDescriptions:
+    replicaCount: 1
+  mailMessage:
+    replicaCount: 1
+  stackEventCount:
+    replicaCount: 1
+  webhooks:
+    replicaCount: 1
+  workitem:
+    replicaCount: 1
+  eventUsage:
+    replicaCount: 1
+
+statsd:
+  token: statsdtoken
+  user: statsduser
+
+config: {}
+#  key: value
+
+service:
+  type: ClusterIP
+
+elasticsearch:
+  connectionString: 
+  image:
+    repository: nexus.pf.com:8082/exceptionless/elasticsearch
+    tag: 8.3.1
+    pullPolicy: IfNotPresent
+
+redis:
+  connectionString: 
+  image:
+    repository: nexus.pf.com:8082/redis
+    tag: 7.0-alpine
+    pullPolicy: IfNotPresent
+
+storageClass:
+  name: exceptionless-nfs-storage
+    # Set access mode - ReadWriteOnce, ReadOnlyMany or ReadWriteMany
+  accessModes: ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+
+storage:
+  connectionString: 
+
+cache:
+  connectionString: 
+
+metrics:
+  connectionString: 
+
+queue:
+  connectionString: 
+
+email:
+  connectionString: smtp://cyg_zpp@163.com:zpp_cyg@smtp.163.com:25
+
+messagebus:
+  connectionString: 
