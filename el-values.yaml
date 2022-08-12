@@ -1,29 +1,29 @@
 api:
   replicaCount: 1
-  defaultDomain: api.exless.pf.com
-  domains: [api.exless.pf.com,cllctr.exless.pf.com,app.exless.pf.com]
+  defaultDomain: api.exless.my.com
+  domains: [api.exless.my.com,cllctr.exless.my.com,app.exless.my.com]
   image:
-    repository: nexus.pf.com:8082/exceptionless/api
+    repository: mydockerhost/exceptionless/api
     tag: latest
     pullPolicy: IfNotPresent
 
 collector:
   replicaCount: 1
-  defaultDomain: cllctr.exless.pf.com
-  domains: [cllctr.exless.pf.com,api.exless.pf.com,app.exless.pf.com]
+  defaultDomain: cllctr.exless.my.com
+  domains: [cllctr.exless.my.com,api.exless.my.com,app.exless.my.com]
 
 app:
   replicaCount: 1
-  defaultDomain: app.exless.pf.com
-  domains: [app.exless.pf.com,api.exless.pf.com,cllctr.exless.pf.com]
+  defaultDomain: app.exless.my.com
+  domains: [app.exless.my.com,api.exless.my.com,cllctr.exless.my.com]
   image:
-    repository: nexus.pf.com:8082/exceptionless/ui
+    repository: mydockerhost/exceptionless/ui
     tag: latest
     pullPolicy: IfNotPresent
 
 jobs:
   image:
-    repository: nexus.pf.com:8082/exceptionless/job
+    repository: mydockerhost/exceptionless/job
     tag: latest
     pullPolicy: IfNotPresent
   closeInactiveSessions:
@@ -60,14 +60,14 @@ service:
 elasticsearch:
   connectionString: 
   image:
-    repository: nexus.pf.com:8082/exceptionless/elasticsearch
+    repository: mydockerhost/exceptionless/elasticsearch
     tag: 8.3.1
     pullPolicy: IfNotPresent
 
 redis:
   connectionString: 
   image:
-    repository: nexus.pf.com:8082/redis
+    repository: mydockerhost/redis
     tag: 7.0-alpine
     pullPolicy: IfNotPresent
 
@@ -92,7 +92,7 @@ queue:
   connectionString: 
 
 email:
-  connectionString: smtp://cyg_zpp@163.com:zpp_cyg@smtp.163.com:25
+  connectionString: smtp://myemail@163.com:mypwd@smtp.163.com:25
 
 messagebus:
   connectionString: 
